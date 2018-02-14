@@ -1,0 +1,3 @@
+[submodule "r-source"]
+	path = r-source
+	url = https://github.com/wch/r-source

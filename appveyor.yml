@@ -1,0 +1,27 @@
+image: Visual Studio 2017
+
+platform: x64
+
+install:
+  # - appveyor-retry choco install -y miktex.portable
+  - ps: Import-Module '.\scripts\appveyor-tool.ps1'
+  - ps: Bootstrap
+  - cmd: git submodule update --init --recursive
+  - cmd: .\scripts\msys2.cmd
+  - cp -r qpdf c:\qpdf
+
+# environment:
+
+build_script:
+  - ECHO %PATH%
+  - cp src/gnuwin32/MkRules.local r-source/src/gnuwin32/.
+  - cp src/main/Makefile.win r-source/src/main/.
+  - cp src/extra/blas/Makefile.win r-source/src/extra/blas/.
+
+  - cd r-source/src/gnuwin32
+  - make rsync-recommended
+  - make rsync-extsoft
+
+  - SET TMPDIR=%TEMP%
+  - ECHO %TMPDIR%
+  - make distribution
