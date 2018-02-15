@@ -7,8 +7,10 @@ install:
   - ps: Import-Module '.\scripts\appveyor-tool.ps1'
   - ps: Bootstrap
   - cmd: git submodule update --init --recursive
+  - cp -r c:\R64\Tcl r-source\Tcl
   - cmd: .\scripts\msys2.cmd
   - cp -r qpdf c:\qpdf
+
 
 # environment:
 
@@ -18,11 +20,14 @@ build_script:
   - cp src/main/Makefile.win r-source/src/main/.
   - cp src/extra/blas/Makefile.win r-source/src/extra/blas/.
 
+  - gcc --version
+  - gfortran --version
+
   - cd r-source/src/gnuwin32
   - make rsync-recommended
   - make rsync-extsoft
 
-  - SET TMPDIR=%TEMP%
-  - ECHO %TMPDIR%
-  - SET PATH=C:\Rtools\bin;C:\Rtools\mingw_64\bin
+  - SET TMPDIR=C:/Users/appveyor/AppData/Local/Temp
+
+  - make all
   - make distribution

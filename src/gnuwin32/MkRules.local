@@ -53,7 +53,7 @@ WIN = 64
 # Some of the toolchains have prefixes for e.g. ar, gcc.
 # This can also be used to give the full path to the compiler,
 # including a trailing / .
-BINPREF = c:/Rtools/mingw_32/bin/
+# BINPREF = c:/Rtools/mingw_32/bin/
 # prefix for 64-bit:
 BINPREF64 = c:/Rtools/mingw_64/bin/
 # Set this to indicate a non-gcc compiler and version
