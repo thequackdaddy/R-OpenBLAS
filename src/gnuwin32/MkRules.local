@@ -135,7 +135,7 @@ EOPTS = -mtune=corei7
 ISDIR = C:/Program Files (x86)/Inno Setup 5
 
 # optional location where qpdf was installed (in $(QPDF)/bin). Spaces allowed.
-QPDF = C:/qpdf/qpdf-7.1.1
+QPDF = C:/qpdf
 
 # home of 32-bit files for combined installer on 64-bit build
 # HOME32 =

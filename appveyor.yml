@@ -24,4 +24,5 @@ build_script:
 
   - SET TMPDIR=%TEMP%
   - ECHO %TMPDIR%
+  - SET PATH=C:\Rtools\bin;C:\Rtools\mingw_64\bin
   - make distribution
