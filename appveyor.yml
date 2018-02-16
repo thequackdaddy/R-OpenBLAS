@@ -40,3 +40,6 @@ build_script:
 
   - make all
   - make distribution
+
+artifacts:
+  - path: r-source/src/gnuwin32/installer/R*-win*.exe
