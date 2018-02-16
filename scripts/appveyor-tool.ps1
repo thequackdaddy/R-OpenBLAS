@@ -85,4 +85,8 @@ Function Bootstrap {
 
   # InstallMiktex
   InstallRtools
+
+  New-Item "r-source\SVN-REVISION" -ItemType file
+  "Revision: 50001" | Add-Content -Path "r-source\SVN-REVISION"
+  (Get-Date) | Add-Content -Path "r-source\SVN-REVISION"
 }

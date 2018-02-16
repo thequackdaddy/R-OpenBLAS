@@ -14,9 +14,9 @@ install:
   # autoinstall latex packages (0=no, 1=autoinstall, 2=ask)
   # this adds this to the registry!
   - initexmf --set-config-value "[MPM]AutoInstall=1"
+  - cmd: git submodule update --init --recursive
   - ps: Import-Module '.\scripts\appveyor-tool.ps1'
   - ps: Bootstrap
-  - cmd: git submodule update --init --recursive
   - cp -r c:\R64\Tcl r-source\Tcl
   - cmd: .\scripts\msys2.cmd
   - cp -r qpdf c:\qpdf
