@@ -17,8 +17,9 @@ install:
   - cmd: git submodule update --init --recursive
   - ps: Import-Module '.\scripts\appveyor-tool.ps1'
   - ps: Bootstrap
-  - cp -r c:\R64\Tcl r-source\Tcl
-  - cmd: .\scripts\msys2.cmd
+  # - mkdir c:\R64
+  # - cp -r c:\R64\Tcl r-source\Tcl
+  # - cmd: .\scripts\msys2.cmd
   - cp -r qpdf c:\qpdf
 
 environment:
