@@ -21,13 +21,25 @@ install:
   - cmd: .\scripts\msys2.cmd
   - cp -r qpdf c:\qpdf
 
-# environment:
+environment:
+  global:
+    USE_ATLAS: YES
+    ATLAS_PATH: C:/projects/r-openblas/libopenBLAS -lopenblas_haswellp-r0.2.20
+    MULTI: 64
+    WIN: 64
+    BINPREF64: c:/Rtools/mingw_64/bin/
+    TEXI2DVI: TEXINDEX=C:/Rtools/bin/texindex.exe texify
+    TEXI2ANY: C:/Perl/bin/perl.exe -IC:/msys64/usr/bin C:/msys64/usr/bin/texi2any
+    ISDIR: C:/Program Files (x86)/Inno Setup 5
+    QPDF: C:/qpdf
+    TMPDIR: C:/Users/appveyor/AppData/Local/Temp
+    CPATH: ../../extsoft/include
 
 build_script:
   - ECHO %PATH%
-  - cp src/gnuwin32/MkRules.local r-source/src/gnuwin32/.
-  - cp src/main/Makefile.win r-source/src/main/.
-  - cp src/extra/blas/Makefile.win r-source/src/extra/blas/.
+  # - cp src/gnuwin32/MkRules.local r-source/src/gnuwin32/.
+  # - cp src/main/Makefile.win r-source/src/main/.
+  # - cp src/extra/blas/Makefile.win r-source/src/extra/blas/.
 
   - gcc --version
   - gfortran --version
@@ -35,9 +47,6 @@ build_script:
   - cd r-source/src/gnuwin32
   - make rsync-recommended
   - make rsync-extsoft
-
-  - SET TMPDIR=C:/Users/appveyor/AppData/Local/Temp
-
   - make all
   - make distribution
 

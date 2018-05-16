@@ -48,7 +48,7 @@ Function InstallRtools {
 
   Progress "Running Rtools installer"
   Start-Process -FilePath ..\Rtools-current.exe -ArgumentList /VERYSILENT -NoNewWindow -Wait
-  Start-Process -FilePath ..\Rtools-current.exe -ArgumentList "/VERYSILENT /COMPONENTS=""extras extras64""" -NoNewWindow -Wait
+  # Start-Process -FilePath ..\Rtools-current.exe -ArgumentList "/VERYSILENT /COMPONENTS=""extras extras64""" -NoNewWindow -Wait
 
   $RtoolsDrive = "C:"
   echo "Rtools is now available on drive $RtoolsDrive"
