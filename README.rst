@@ -30,17 +30,11 @@ elemenets are that you need to download the following:
 
 Strategy:
 
-There are 3 makefiles which need to be updated to achieve a correctly
-functioning build. They are:
+The GNU make tools can be configured using environment variables. For the most
+part, that's the approach I have taken. The environment variables are configured
+using the ``appveyor.yml`` file. In addition,
 
-``src/gnuwin32/MkRules.local``
-
-The majority of the settings are in here. The important piece is to link to
-where the new BLAS library is. You also need to set some compiler options. In
-this example, I've also set ``EOPTS = -mtune=corei7`` for Intel Core i7
-optimizations.
-
-``src/extra/blas``
+``src/extra/blas/Makefile.win``
 
 The name of the BLAS library file--something like
 ``openblas_haswellp-r0.2.20``--needs to be added. Note that the ``lib`` that
@@ -48,13 +42,7 @@ starts the file and the ``.a`` extension are expected by the compiler and so the
 makefile should only need all the characters after the ``lib`` and before the
 ``.a``
 
-``src/main/Makefile.win``
-
-This is likely a bug with the generic R code. Line 9 needs to be changed to add
-on  ``-I../../extsoft/include`` to remind ``gcc`` where to find the extra
-headers.
-
-LaTex is required for the build to complete. I've used `MiKTeX Portable`_ only
+LaTeX is required for the build to complete. I've used `MiKTeX Portable`_ only
 because its easy to download and install. The LaTeX bin directory nees to be
 added to the PATH.
 
@@ -101,6 +89,6 @@ Select the most recent successful build and download the executable artifact.
 .. _`MiKTeX Portable`: https://miktex.org/
 .. _Appveyor: http://appveyor.com/
 .. _`blog post`: https://www.avrahamadler.com/r-tips/build-openblas-for-windows-r64/
-.. _opbenblasr: https://github.com/thequackdaddy/openblasr
+.. _openblasr: https://github.com/thequackdaddy/openblasr
 .. |Appveyor Build Status| image:: https://ci.appveyor.com/api/projects/status/fm8mj3hq6v053gul?svg=true
    :target: https://ci.appveyor.com/project/thequackdaddy/r-openblas/

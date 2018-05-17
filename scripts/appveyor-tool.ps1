@@ -60,18 +60,6 @@ Function InstallRtools {
   $env:BINPREF=$RtoolsDrive + '/Rtools/mingw_64/bin/'
 }
 
-Function InstallMiktex {
-
-  $miktexurl = "http://mirror.utexas.edu/ctan/systems/win32/miktex/setup/windows-x86/basic-miktex.exe"
-  Progress ("Downloading Miktex from " + $miktexurl)
-  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../miktex.exe -L $miktexurl
-
-  Progress "Beginning install..."
-  # Start-Process -FilePath ..\miktex.exe -ArgumentList "--auto-install=yes --paper-size=Letter --unattended --shared --modify-path" -NoNewWindow -Wait
-  # Progress ("Path is now: " + $env:PATH)
-  # initexmf --set-config-value [MPM]AutoInstall=1
-}
-
 Function Bootstrap {
   [CmdletBinding()]
   Param()
