@@ -18,14 +18,14 @@ install:
   - ps: Import-Module '.\scripts\appveyor-tool.ps1'
   - ps: Bootstrap
   # - mkdir c:\R64
-  # - cp -r c:\R64\Tcl r-source\Tcl
+  - cp -r c:\Rtools\Tcl64 r-source\Tcl
   # - cmd: .\scripts\msys2.cmd
   - cp -r qpdf c:\qpdf
 
 environment:
   global:
     USE_ATLAS: YES
-    ATLAS_PATH: C:/projects/r-openblas/libopenBLAS -lopenblas_haswellp-r0.2.20
+    ATLAS_PATH: C:/projects/r-openblas/libopenBLAS
     MULTI: 64
     WIN: 64
     BINPREF64: c:/Rtools/mingw_64/bin/
@@ -40,7 +40,7 @@ build_script:
   - ECHO %PATH%
   # - cp src/gnuwin32/MkRules.local r-source/src/gnuwin32/.
   # - cp src/main/Makefile.win r-source/src/main/.
-  # - cp src/extra/blas/Makefile.win r-source/src/extra/blas/.
+  - cp src/extra/blas/Makefile.win r-source/src/extra/blas/.
 
   - gcc --version
   - gfortran --version
