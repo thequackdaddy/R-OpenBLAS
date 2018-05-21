@@ -47,8 +47,8 @@ Function InstallRtools {
   & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../Rtools-current.exe -L $rtoolsurl
 
   Progress "Running Rtools installer"
-  Start-Process -FilePath ..\Rtools-current.exe -ArgumentList /VERYSILENT -NoNewWindow -Wait
-  Start-Process -FilePath ..\Rtools-current.exe -ArgumentList "/VERYSILENT /COMPONENTS=""extras extras64""" -NoNewWindow -Wait
+  # Start-Process -FilePath ..\Rtools-current.exe -ArgumentList /VERYSILENT -NoNewWindow -Wait
+  Start-Process -FilePath ..\Rtools-current.exe -ArgumentList "/VERYSILENT /COMPONENTS=""rtools mingw_32 mingw_64 checkutils aspell extras""" -NoNewWindow -Wait
 
   $RtoolsDrive = "C:"
   echo "Rtools is now available on drive $RtoolsDrive"
@@ -58,18 +58,6 @@ Function InstallRtools {
   $env:PATH = $RtoolsDrive + '\Rtools\bin;' + $RtoolsDrive + '\Rtools\mingw_64\bin;' + $RtoolsDrive + '\msys64\usr\bin;' + $env:PATH
   $env:PATH = $env:PATH + $RtoolsDrive + '\qpdf\bin;'
   $env:BINPREF=$RtoolsDrive + '/Rtools/mingw_64/bin/'
-}
-
-Function InstallMiktex {
-
-  $miktexurl = "http://mirror.utexas.edu/ctan/systems/win32/miktex/setup/windows-x86/basic-miktex.exe"
-  Progress ("Downloading Miktex from " + $miktexurl)
-  & "C:\Program Files\Git\mingw64\bin\curl.exe" -s -o ../miktex.exe -L $miktexurl
-
-  Progress "Beginning install..."
-  # Start-Process -FilePath ..\miktex.exe -ArgumentList "--auto-install=yes --paper-size=Letter --unattended --shared --modify-path" -NoNewWindow -Wait
-  # Progress ("Path is now: " + $env:PATH)
-  # initexmf --set-config-value [MPM]AutoInstall=1
 }
 
 Function Bootstrap {
