@@ -4,7 +4,7 @@ Overview
 ========
 
 This project is used to compile R_ on Windows using the fast openblas_
-BLAS library as a fast alterative to R's native BLAS.
+BLAS library as a fast alternative to R's native BLAS.
 
 Acknowledgement
 ===============
@@ -32,18 +32,20 @@ Strategy:
 
 The GNU make tools can be configured using environment variables. For the most
 part, that's the approach I have taken. The environment variables are configured
-using the ``appveyor.yml`` file. In addition,
+using the ``appveyor.yml`` file. In addition, one file must be edited/copied
+because it explicitly uses driver names which are not used for Windows R. This
+file is:
 
 ``src/extra/blas/Makefile.win``
 
 The name of the BLAS library file--something like
-``openblas_haswellp-r0.2.20``--needs to be added. Note that the ``lib`` that
-starts the file and the ``.a`` extension are expected by the compiler and so the
-makefile should only need all the characters after the ``lib`` and before the
-``.a``
+``openblas_haswellp-r0.2.20``--needs to replace the currently existing
+references. Note that the ``lib`` that starts the file and the ``.a`` extension
+are expected by the compiler and so the makefile should only need all the
+characters after the ``lib`` and before the ``.a``
 
 LaTeX is required for the build to complete. I've used `MiKTeX Portable`_ only
-because its easy to download and install. The LaTeX bin directory nees to be
+because its easy to download and install. The LaTeX bin directory needs to be
 added to the PATH.
 
 Additionally, QPDF_ is needed for processing some of the completed PDFs. The
