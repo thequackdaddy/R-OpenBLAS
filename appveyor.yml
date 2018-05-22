@@ -32,6 +32,7 @@ environment:
     QPDF: C:/qpdf
     TMPDIR: C:/Users/appveyor/AppData/Local/Temp
     CPATH: ../../extsoft/include
+    EOPTS: -mtune=haswell
 
 build_script:
   - ECHO %PATH%
