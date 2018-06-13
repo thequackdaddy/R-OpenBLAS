@@ -32,7 +32,7 @@ Function InstallQpdf
   Progress ("Downloading QPDF from: " + $download_url)
   Invoke-WebRequest -Uri $download_url -OutFile qpdf.zip
   Progress ("Unzipping QPDF")
-  7z x qpdf.zip -o$qpdf_local
+  Invoke-Expression "7z x qpdf.zip -o${qpdf_local}"
   $qpdf_path = (Get-ChildItem -Path $qpdf_local | Select-Object -First 1).FullName
   Progress ("QPDF installed at " + $qpdf_path)
   $env:QPDF = $qpdf_path -replace "\\", "/"
