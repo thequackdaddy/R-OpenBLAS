@@ -19,6 +19,23 @@ Function Exec
     }
 }
 
+Function InstallQpdf
+{
+  # Have to use TLS 1.2
+  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
+  $qpdf_gh = "https://api.github.com/repos/qpdf/qpdf/releases"
+  $qpdf_local = "c:\qpdf"
+  $qpdf = Invoke-WebRequest $qpdf_gh | ConvertFrom-Json
+  $assets = $($qpdf | Sort-Object -Property id -Descending | Where-Object prerelease -eq 0 | Select-Object -First 1).assets
+  $download_url = $($assets | Where-Object name -Like "*mingw64*" | Select-Object -First 1).browser_download_url
+
+  Progress ("Downloading QPDF from: " + $download_url)
+  Invoke-WebRequest -Uri $download_url -OutFile qpdf.zip
+  Progress ("Unzipping QPDF")
+  7z x qpdf.zip -o$qpdf_local
+  Progress ("QPDF installed at " + $qpdf_local)
+}
+
 Function Progress
 {
     [CmdletBinding()]
@@ -55,9 +72,7 @@ Function InstallRtools {
 
   Progress "Setting PATH"
 
-  $env:PATH = $RtoolsDrive + '\Rtools\bin;' + $RtoolsDrive + '\Rtools\mingw_64\bin;' + $RtoolsDrive + '\msys64\usr\bin;' + $env:PATH
-  $env:PATH = $env:PATH + $RtoolsDrive + '\qpdf\bin;'
-  $env:BINPREF=$RtoolsDrive + '/Rtools/mingw_64/bin/'
+  $env:PATH = $RtoolsDrive + '\Rtools\bin;' + $RtoolsDrive + '\Rtools\mingw_64\bin;' + $env:PATH
 }
 
 Function Bootstrap {
@@ -72,6 +87,7 @@ Function Bootstrap {
   tzutil /g
 
   # InstallMiktex
+  InstallQpdf
   InstallRtools
 
   New-Item "r-source\SVN-REVISION" -ItemType file

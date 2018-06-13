@@ -5,20 +5,6 @@ platform: x64
 cache:
   - c:\miktex -> appveyor.yml
 
-install:
-  # Install miktex to get pdflatex, if we don't get it from the cache
-  - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe appveyor DownloadFile http://mirror.utexas.edu/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable.exe
-  - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe 7z x miktex-portable.exe -oC:\miktex >NUL
-  - set "PATH=%PATH%;c:\miktex\texmfs\install\miktex\bin;"
-  # autoinstall latex packages (0=no, 1=autoinstall, 2=ask)
-  # this adds this to the registry!
-  - initexmf --set-config-value "[MPM]AutoInstall=1"
-  - git submodule update --init --recursive
-  - ps: Import-Module '.\scripts\appveyor-tool.ps1'
-  - ps: Bootstrap
-  - cp -r c:\Rtools\Tcl64 r-source\Tcl
-  - cp -r qpdf c:\qpdf
-
 environment:
   global:
     USE_ATLAS: YES
@@ -33,6 +19,19 @@ environment:
     TMPDIR: C:/Users/appveyor/AppData/Local/Temp
     CPATH: ../../extsoft/include
     EOPTS: -mtune=haswell
+
+install:
+  # Install miktex to get pdflatex, if we don't get it from the cache
+  - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe appveyor DownloadFile http://mirror.utexas.edu/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable.exe
+  - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe 7z x miktex-portable.exe -oC:\miktex >NUL
+  - set "PATH=%PATH%;c:\miktex\texmfs\install\miktex\bin;"
+  # autoinstall latex packages (0=no, 1=autoinstall, 2=ask)
+  # this adds this to the registry!
+  - initexmf --set-config-value "[MPM]AutoInstall=1"
+  - git submodule update --init --recursive
+  - ps: Import-Module '.\scripts\appveyor-tool.ps1'
+  - ps: Bootstrap
+  - cp -r c:\Rtools\Tcl64 r-source\Tcl
 
 build_script:
   - ECHO %PATH%
