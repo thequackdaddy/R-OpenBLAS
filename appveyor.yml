@@ -15,7 +15,7 @@ environment:
     TEXI2DVI: TEXINDEX=C:/Rtools/bin/texindex.exe texify
     TEXI2ANY: C:/Perl/bin/perl.exe -IC:/msys64/usr/bin C:/msys64/usr/bin/texi2any
     ISDIR: C:/Program Files (x86)/Inno Setup 5
-    QPDF: C:/qpdf
+    # QPDF: C:/qpdf
     TMPDIR: C:/Users/appveyor/AppData/Local/Temp
     CPATH: ../../extsoft/include
     EOPTS: -mtune=haswell
