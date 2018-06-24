@@ -5,6 +5,21 @@ platform: x64
 cache:
   - c:\miktex -> appveyor.yml
 
+environment:
+  global:
+    USE_ATLAS: YES
+    ATLAS_PATH: C:/projects/r-openblas/libopenBLAS
+    MULTI: 64
+    WIN: 64
+    BINPREF64: c:/Rtools/mingw_64/bin/
+    TEXI2DVI: TEXINDEX=C:/Rtools/bin/texindex.exe texify
+    TEXI2ANY: C:/Perl/bin/perl.exe -IC:/msys64/usr/bin C:/msys64/usr/bin/texi2any
+    ISDIR: C:/Program Files (x86)/Inno Setup 5
+    # QPDF: C:/qpdf
+    TMPDIR: C:/Users/appveyor/AppData/Local/Temp
+    CPATH: ../../extsoft/include
+    EOPTS: -mtune=haswell
+
 install:
   # Install miktex to get pdflatex, if we don't get it from the cache
   - if not exist c:\miktex\texmfs\install\miktex\bin\pdflatex.exe appveyor DownloadFile http://mirror.utexas.edu/ctan/systems/win32/miktex/setup/windows-x86/miktex-portable.exe
@@ -17,22 +32,6 @@ install:
   - ps: Import-Module '.\scripts\appveyor-tool.ps1'
   - ps: Bootstrap
   - cp -r c:\Rtools\Tcl64 r-source\Tcl
-  - cp -r qpdf c:\qpdf
-
-environment:
-  global:
-    USE_ATLAS: YES
-    ATLAS_PATH: C:/projects/r-openblas/libopenBLAS
-    MULTI: 64
-    WIN: 64
-    BINPREF64: c:/Rtools/mingw_64/bin/
-    TEXI2DVI: TEXINDEX=C:/Rtools/bin/texindex.exe texify
-    TEXI2ANY: C:/Perl/bin/perl.exe -IC:/msys64/usr/bin C:/msys64/usr/bin/texi2any
-    ISDIR: C:/Program Files (x86)/Inno Setup 5
-    QPDF: C:/qpdf
-    TMPDIR: C:/Users/appveyor/AppData/Local/Temp
-    CPATH: ../../extsoft/include
-    EOPTS: -mtune=haswell
 
 build_script:
   - ECHO %PATH%
