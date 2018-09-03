@@ -66,7 +66,7 @@ https://ci.appveyor.com/project/thequackdaddy/openblasr
 Pick the most recent build that succeeded and select the Artifact tab to
 download it.
 
-Please note that it is important to set the ``PATH`` so that the _Rtools ``gcc``
+Please note that it is important to set the ``PATH`` so that the Rtools_ ``gcc``
 compiler and ``make`` will be found before any other installation on the sytem.
 Additionally, ``pdflatex.exe`` needs to be in the path. ``MiKTeX`` needs
 a few additional packages to install everything, so be sure to either download
@@ -82,6 +82,15 @@ available here:
 https://ci.appveyor.com/project/thequackdaddy/r-openblas/
 
 Select the most recent successful build and download the executable artifact.
+
+.. code-block::
+
+   cd r-source
+   git checkout -t origin/tags/<version number>
+   cd ..
+   git add r-source
+   git commit -m "Updated OpenBLAS"
+   git push origin <branchname>
 
 .. _openblas: http://www.openblas.net/
 .. _R: https://www.r-project.org/
