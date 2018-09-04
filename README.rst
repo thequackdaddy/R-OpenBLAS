@@ -101,5 +101,5 @@ Select the most recent successful build and download the executable artifact.
 .. _Appveyor: http://appveyor.com/
 .. _`blog post`: https://www.avrahamadler.com/r-tips/build-openblas-for-windows-r64/
 .. _openblasr: https://github.com/thequackdaddy/openblasr
-.. |Appveyor Build Status| image:: https://ci.appveyor.com/api/projects/status/fm8mj3hq6v053gul?svg=true
+.. |Appveyor Build Status| image:: https://ci.appveyor.com/api/projects/status/fm8mj3hq6v053gul/branch/master?svg=true
    :target: https://ci.appveyor.com/project/thequackdaddy/r-openblas/
