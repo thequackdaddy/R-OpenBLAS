@@ -23,7 +23,6 @@ which have sometimes spotty and confusing windows support. However, the key
 elemenets are that you need to download the following:
 
 - Rtools_ Used for the actual ``gcc`` and ``gfortran`` compilers.
-- MSYS2_ The compilation environment. MSYS2 ``bash`` must be used.
 - `MiKTeX Portable`_ R builds a ton of documentation as HTML and PDF files.
 - Appveyor_ Is an online continuous integration system that essentially runs Windows buils.
 - openblas_ is needed. A version specfically compiled for R for Windows can be found here: https://github.com/thequackdaddy/OpenBLASR
@@ -46,15 +45,14 @@ characters after the ``lib`` and before the ``.a``
 
 LaTeX is required for the build to complete. I've used `MiKTeX Portable`_ only
 because its easy to download and install. The LaTeX bin directory needs to be
-added to the PATH.
+added to the PATH. MiKTeX also must download smörgåsbord of extra packages--
+and must do so without user interaction. There's a ``initexmf`` command
+which can help set that up.
 
 Additionally, QPDF_ is needed for processing some of the completed PDFs. The
-location of the install can be specified in the ``MKRules.local`` file
-as part of the installation. Because the binary download has proven unreliable,
-I've included it in this. Note that QPDF uses an Apache 2 license and is
-provided as such. In a future version of this--and once I figure out how
-to have the binary auto-downloaded--it will likely be removed from this
-project.
+location of the install can be specified in the environment variables
+as part of the installation. QPDF is auto-downloaded from its GitHub releases
+page.
 
 A compatible openblas_ library is required. You can make your own--and
 compile for a processor other than Intel's Haswell family  using the openblasr_
@@ -67,7 +65,7 @@ Pick the most recent build that succeeded and select the Artifact tab to
 download it.
 
 Please note that it is important to set the ``PATH`` so that the Rtools_ ``gcc``
-compiler and ``make`` will be found before any other installation on the sytem.
+compiler and ``make`` will be found before any other installation on the system.
 Additionally, ``pdflatex.exe`` needs to be in the path. ``MiKTeX`` needs
 a few additional packages to install everything, so be sure to either download
 them or configure ``MiKTeX`` so that dependencies are auto-downloaded and
@@ -79,7 +77,7 @@ Download
 A compiled 64-bit R, with OpenBLAS compiled for Intel Core i7 processors is
 available here:
 
-https://ci.appveyor.com/project/thequackdaddy/r-openblas/
+https://github.com/thequackdaddy/R-OpenBLAS/releases
 
 Select the most recent successful build and download the executable artifact.
 
