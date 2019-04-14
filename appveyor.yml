@@ -50,7 +50,7 @@ artifacts:
   - path: r-source/src/gnuwin32/installer/R*-win*.exe
 
 deploy:
-  description: 'This is R, but compiled for windwos using OpenBLAS'
+  description: 'This is R, but compiled for Windows using OpenBLAS'
   provider: GitHub
   auth_token:
     secure: 6VduGFAfk0LDLzJDnzCakW7vldMxkkaw4OHCYkFqyecDV9sKE+MdEP5Go4zpmt3c
